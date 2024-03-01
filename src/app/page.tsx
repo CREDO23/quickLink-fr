@@ -9,11 +9,11 @@ import { useEffect } from 'react';
 export default function Home() {
 
   const router = useRouter()
-  const {user} = useAppContext()
+  const appContext = useAppContext()
 
   useEffect(() => {
 
-    if(user){
+    if(appContext?.user){
       router.push('/home')
     }
   },[])
