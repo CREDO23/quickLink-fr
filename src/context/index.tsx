@@ -26,7 +26,7 @@ export const useAppContext = () => useContext(AppContext);
 export const useDispatchApp = () => useContext(DispatchAppContext);
 
 const ContextProvider = ({ children }: { children: ReactNode }) => {
-  const [state, setState] = useState(() => JSON.parse(localStorage.getItem('root') as string));
+  const [state, setState] = useState(() => JSON.parse(localStorage.getItem('root') as string) ?? initialState);
 
   useEffect(() => {
     localStorage.setItem('root', JSON.stringify(state));
