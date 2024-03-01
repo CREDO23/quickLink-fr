@@ -5,7 +5,7 @@ const ContextProvider = dynamic(() => import('@/context'), { ssr: false });
 
 const Providers = ({ children }: { children: ReactNode }): JSX.Element => {
   return (
-    <body className=" h-[100dvh] w-full flex items-center justify-center">
+    <body className=" min-h-[100vdh] h-[100dvh] w-full flex items-center justify-center">
       <ContextProvider>{children}</ContextProvider>
     </body>
   );
