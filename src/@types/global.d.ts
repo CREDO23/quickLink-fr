@@ -17,7 +17,11 @@ interface IUser {
 }
 
 interface ILink {
-  long_form : string
-  short_form : string
-  visited_times : number
-}
+  link : {
+    id : string
+    long_form : string
+    maker : string
+    visit_times : number
+  }
+  shortUrl : string
+} 
