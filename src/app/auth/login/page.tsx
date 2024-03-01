@@ -1,21 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 'use client';
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { defaultValues, loginSchema } from "./validation";
-import Button from "@/components/shared/button";
-import Input from "@/components/shared/input";
-import { useForm, Controller } from "react-hook-form";
-import { joiResolver } from "@hookform/resolvers/joi";
-import useAxiosAction from "@/hooks/useAction";
-import { AxiosResponse } from "axios";
-import APICall from "@/helpers/apiCall";
-import { message } from "antd";
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { defaultValues, loginSchema } from './validation';
+import Button from '@/components/shared/button';
+import Input from '@/components/shared/input';
+import { useForm, Controller } from 'react-hook-form';
+import { joiResolver } from '@hookform/resolvers/joi';
+import useAxiosAction from '@/hooks/useAction';
+import { AxiosResponse } from 'axios';
+import APICall from '@/helpers/apiCall';
+import { message } from 'antd';
+import { useDispatchApp, useAppContext } from '@/context';
 
 export default function Register(): JSX.Element {
   const router = useRouter();
+  const dispatchApp = useDispatchApp();
+  const appContext = useAppContext();
 
   const { control, handleSubmit } = useForm({
     defaultValues,
@@ -27,20 +30,18 @@ export default function Register(): JSX.Element {
   const loginUser = (
     user: IUser
   ): Promise<AxiosResponse<IAPIResponse<{ user: IUser; accessToken: string }>>> => {
-    return APICall.post('/auth/login', { data: user }, '');
+    return APICall.post('/auth/signin', { data: user }, '');
   };
 
   // Login user action
   const [loginUserAction, state] = useAxiosAction<
     { user: IUser; accessToken: string },
-    { email: string; password: string }
+    { username: string; password: string }
   >(loginUser);
 
-  const onSubmit = (data: { email: string; password: string }) => {
+  const onSubmit = (data: { username: string; password: string }) => {
     loginUserAction(data);
   };
-
-  // Set the user on the global state
 
   const [msg, msgContext] = message.useMessage();
 
@@ -54,7 +55,7 @@ export default function Register(): JSX.Element {
 
     if (data) {
       msg.success(`Logged as ${data.user.username}`);
-
+      dispatchApp(() => ({ ...appContext, user: data.user, accessToken: data.accessToken }));
       router.push('/home');
     }
   }, [state.loading]);
@@ -71,13 +72,13 @@ export default function Register(): JSX.Element {
           >
             <div className="flex w-full flex-col gap-4">
               <Controller
-                name="email"
+                name="username"
                 control={control}
                 render={({ field: { ref, ...fields }, fieldState: { error } }) => (
                   <Input
                     size="large"
-                    label="Email"
-                    placeholder="Enter your email"
+                    label="Username"
+                    placeholder="Enter your username"
                     refEl={ref}
                     {...fields}
                     error={error?.message}
@@ -108,9 +109,11 @@ export default function Register(): JSX.Element {
 
               <p className="flex items-center justify-center gap-2">
                 <span>Don&apos;t have an account ?</span>
-                
+
                 <Link href={'/auth/register'}>
-                  <span className=" text-cl-rimary cursor-pointer font-normal text-primary">Register</span>
+                  <span className=" text-cl-rimary cursor-pointer font-normal text-primary">
+                    Register
+                  </span>
                 </Link>
               </p>
             </div>

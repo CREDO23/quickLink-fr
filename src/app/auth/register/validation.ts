@@ -1,14 +1,14 @@
 import * as joi from 'joi';
 
 const defaultValues = {
-  name: '',
+  username: '',
   email: '',
   password: '',
   confirmPassword: '',
 };
 
 const registerSchema = joi.object({
-  name: joi.string().required().min(5).messages({
+  username: joi.string().required().min(5).messages({
     'any.required': 'The name is required',
     'any.min': 'The name must be at least 5 characters',
   }),

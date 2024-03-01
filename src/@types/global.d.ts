@@ -15,3 +15,9 @@ interface IUser {
   password?: string | null;
   confirmPassword?: string | null;
 }
+
+interface ILink {
+  long_form : string
+  short_form : string
+  visited_times : number
+}
