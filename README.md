@@ -1,3 +1,3 @@
 #QuickLink-fr
 
-A URL shortner app
+This repository contains the quickLink API. A URL shortner app
