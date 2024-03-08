@@ -130,7 +130,7 @@ function Dashboard() {
       <ShortenLinkModal open={modalOpen} setOpen={setModalOpen} />
       {msgContext}
       <div className="w-full overflow-hidden h-[100dvh] flex flex-col items-center justify-center">
-        <div className="h-16 text-white w-full bg-cl-rimary flex items-center justify-between border border-b-cl-rimary/40 p-4">
+        <div className="h-16 text-white w-full bg-cl-rimary flex items-center justify-between border-b-cl-rimary/40 p-4">
           <h3>My links</h3>{' '}
           <div className=" w-10 h-10 flex items-center justify-center text-cl-rimary rounded-full bg-white">
             {user?.username![0]}
