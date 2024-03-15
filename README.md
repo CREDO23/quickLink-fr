@@ -7,7 +7,7 @@ Welcome to the URL Shortener project! This application provides a streamlined so
 
 - User-Friendly Interface: The intuitive web interface ensures a seamless experience for users. Just enter your long URL, customize the path if desired, and click a button to generate your shortened URL.
 
-## Getting Started
+## Getting started
 Follow these steps to set up the URL shortener on your local machine or server.
 
 ### Prerequisites
