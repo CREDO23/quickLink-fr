@@ -17,7 +17,7 @@ Before you begin, ensure you have the following installed:
 
 - Postgresql: A SQL database for storing URL and redirection data.
 
-### Installation
+### How to start
 - Clone the repository
 - Install dependencies : npm i
 - Start the application: npm start:dev
