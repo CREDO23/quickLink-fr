@@ -21,9 +21,3 @@ Before you begin, ensure you have the following installed:
 - Clone the repository
 - Install dependencies : npm i
 - Start the application: npm start:dev
-
-## Contributing
-We welcome contributions! If you're interested in improving the URL Shortener, please follow the guidelines in CONTRIBUTING.md.
-
-
-Feel free to explore and enhance this URL shortener based on your specific requirements. If you have any questions or encounter issues, don't hesitate to reach out to the community for support. Happy shortening!
